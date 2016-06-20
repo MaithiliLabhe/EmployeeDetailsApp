@@ -1,0 +1,12 @@
+@(employees: List[Employee])(implicit flash: Flash)
+
+@main("Existing Employee Details") {
+
+<dl class="employees">
+    @for(employee <- employees) {
+    <dt>@employee.empName</dt>
+    <dd>@employee.email</dd>
+    }
+</dl>
+
+}
