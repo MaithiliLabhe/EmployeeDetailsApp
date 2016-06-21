@@ -4,12 +4,11 @@
 
 # An example controller showing a sample home page
 GET     /                           controllers.HomeController.index
-
 GET     /employee                   controllers.EmployeeController.list
-
+GET     /getAllEmployees            controllers.DatabaseController.getAllEmployees
 GET     /employee/new               controllers.EmployeeController.newEmployee
-
 POST    /employee/new               controllers.EmployeeController.save
+POST    /addEmployee                controllers.DatabaseController.addEmployee
 
 # An example controller showing how to use dependency injection
 GET     /count                      controllers.CountController.count

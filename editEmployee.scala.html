@@ -1,0 +1,44 @@
+@(employeeForm: Form[Employee], employees: List[Employee])(implicit flash: Flash)
+
+@import helper._
+@import play.api.Play.current
+@import play.api.i18n.Messages.Implicits._
+
+@main("Employee Details") {
+
+<h2>
+    Add Employees to our firm
+</h2>
+<p>Please save the employees information by clicking the save button at the end of the form</b></p>
+
+@if(flash.get("error")) {
+
+<div>
+    <div>
+        <ul>
+            <li class="error-message"> <i class="material-icons left error-icon">error</i>@flash.get("error")</li>
+        </ul>
+    </div>
+</div>
+}
+@form(routes.EmployeeController.save()) {
+<div class="container" >
+    <form>
+        <div class="form-group">
+            <label for="empName">Name:</label>
+            <input name="empName" id="empName" type="text" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input name="email" id="email" type="email" class="form-control" required >
+        </div>
+    </form>
+
+
+    <button type="submit" id="newEmployee" class="btn btn-primary">Add New Employee</button>
+    <button type="submit" id="listEmployees" class="btn btn-primary">View</button>
+</div>
+
+}
+
+}

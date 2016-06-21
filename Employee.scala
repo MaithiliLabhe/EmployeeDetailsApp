@@ -1,38 +1,29 @@
 package models
 
+import play.api.libs.json.Json
+
 /**
   * Created by Orange on 20/06/2016.
   */
-case class Employee(
- eno:Int, empName:String, email:String)
+case class Employee(empName:String, email:String)
 
-  //Below object class works as s data access object for the class
   object Employee {
 
     var employees = Set(
-      Employee(1, "John Matthews", "john.m@abc.com"),
-      Employee(2, "Bob Johnson", "bob.j@abc.com"),
-      Employee(3, "Lily Brown", "lily.b@abc.com"),
-      Employee(4, "Louise Green", "louise.g@abc.com")
+      Employee("John Matthews", "john.m@abc.com"),
+      Employee("Bob Johnson", "bob.j@abc.com"),
+      Employee("Lily Brown", "lily.b@abc.com"),
+      Employee("Louise Green", "louise.g@abc.com")
     )
 
-    override def toString(): String =   {
-      val lastEmployee = employees.last
+    implicit val employeeFormat = Json.format[Employee]
 
-      var itemsAsString = lastEmployee.productIterator.toList.map(_.toString).filter(_.nonEmpty)
+    def findAll = employees.toList
 
-      itemsAsString.mkString(", ")
-
-    }
-
-    def reset : Unit = employees = employees.empty
-
-    def add(newEmployee: Employee): Unit = {
+/*    def add(newEmployee: Employee): Unit = {
       employees =  employees + newEmployee
-    }
-    def findAll = employees.toList.sortBy(_.eno)
+    }*/
 
-    def findByEno(eno: Int) = employees.find(_.eno == eno)
   }
 
 
